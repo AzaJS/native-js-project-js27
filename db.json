@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "title": "IPhone",
+      "description": "lalalalalallalal",
+      "price": 800,
+      "image": "https://asiastore.kg/image/cache/catalog/iphone/iphone12/101014160024903272-670x540.jpg",
+      "id": 1
+    },
+    {
+      "title": "laptop",
+      "price": "25000",
+      "description": "super laptop",
+      "image": "https://m.media-amazon.com/images/I/81KoSSAwH2L._SL1500_.jpg",
+      "id": 2
+    }
+  ]
+}
