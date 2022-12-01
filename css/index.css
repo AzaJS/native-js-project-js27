@@ -166,3 +166,124 @@ a:hover {
   font-size: 15px;
 }
 /* ? CREATE END */
+
+/* ! READ START */
+
+#section__read {
+  margin: 0 auto;
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.card {
+  margin: 10px;
+  border: 1px solid #cddfcb;
+  width: 25%;
+  /* height: 300px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #00000005;
+  justify-content: space-between;
+}
+
+.card h2 .card p {
+  margin: 0;
+}
+
+.card2 {
+  margin: 20px 20px;
+  width: 90%;
+  height: 200px;
+  position: relative;
+  perspective: 1000px;
+  border: none;
+}
+.front2,
+.back2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  transition: 1s;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-sizing: border-box;
+  -webkit-box-shadow: 11px 17px 42px -6px rgba(34, 60, 80, 0.69);
+  -moz-box-shadow: 11px 17px 42px -6px rgba(34, 60, 80, 0.69);
+  box-shadow: 11px 17px 42px -6px rgba(34, 60, 80, 0.69);
+}
+
+.front2 {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.back2 {
+  background-color: #e2ede9;
+  transform: rotateY(180deg);
+  border: 1px solid #cddfcb;
+}
+#card_details2 {
+  width: 98%;
+  height: 100%;
+  background-color: #e2ede9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.card_details2 p {
+  width: 90%;
+}
+#details {
+  box-sizing: border-box;
+  width: 90%;
+}
+.card2:hover .front2 {
+  transform: rotateY(180deg);
+}
+.card2:hover .back2 {
+  transform: rotateY(360deg);
+}
+
+.text {
+  font-family: "Comfortaa", cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.text span {
+  font-size: 15px;
+}
+
+.text h2 {
+  margin: 10px;
+}
+
+.userIcon {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.userIcon img {
+  height: 30px;
+}
+.btnBuy,
+.paginate button {
+  border: 1px solid white;
+  margin: 10px;
+  height: 40px;
+  min-width: 120px;
+  border-radius: 9999px;
+  background-color: rgb(18 70 58);
+  color: white;
+  font-family: "Comfortaa", cursive;
+  font-size: 16px;
+}
+#admin {
+  display: none;
+}

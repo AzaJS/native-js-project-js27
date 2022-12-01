@@ -1,18 +1,31 @@
 {
   "products": [
     {
-      "title": "IPhone",
-      "description": "lalalalalallalal",
-      "price": 800,
-      "image": "https://asiastore.kg/image/cache/catalog/iphone/iphone12/101014160024903272-670x540.jpg",
+      "details": "vuc",
+      "price": "8798",
+      "quantity": "vuyv",
+      "category": "gvhv",
+      "sale": "8979",
+      "urlImg": "hgvhg",
       "id": 1
     },
     {
-      "title": "laptop",
-      "price": "25000",
-      "description": "super laptop",
-      "image": "https://m.media-amazon.com/images/I/81KoSSAwH2L._SL1500_.jpg",
+      "details": "dafoianf",
+      "price": "12312",
+      "quantity": "fadf",
+      "category": "asd",
+      "sale": "143",
+      "urlImg": "asdad",
       "id": 2
+    },
+    {
+      "details": "iui",
+      "price": "22",
+      "quantity": "2dasd",
+      "category": "wda",
+      "sale": "32",
+"urlImg": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png",
+      "id": 3
     }
   ]
 }
