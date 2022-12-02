@@ -13,17 +13,41 @@ let accordion = document.querySelector(".accordion__header");
 // тег для отображения данных в браузере
 let sectionRead = document.getElementById("section__read");
 
-// console.log(sectionRead);
+// изменение продукта (инпуты)
+let inpEditDetails = document.querySelector(".window__edit_details");
+let inpEditPrice = document.querySelector(".window__edit_price");
+let inpEditQuantity = document.querySelector(".window__edit_quantity");
+let inpEditSales = document.querySelector(".window__edit_sales");
+let inpEditCategory = document.querySelector(".window__edit_category");
+let inpEditUrl = document.querySelector(".window__edit_url");
+let btnEdit = document.querySelector(".window__edit_btn-save");
+let btnCloseModal = document.querySelector(".window__edit_close");
+let mainModal = document.querySelector(".main-modal");
+
+// console.log(btnCloseModal);
 
 // !=========== КОДОВОЕ СЛОВО ==========
 let section_add = document.querySelector(".section__add");
 let clickAdmin = document.getElementById("open-admin");
-// let admin_panel_arr = document.getElementsByClassName("admin-panel");
+let admin_panel_arr = document.getElementsByClassName("admin-panel");
+console.log(admin_panel_arr);
 let code = "";
 // console.log(section_add, clickAdmin);
 
 function adminReturn() {
-  if (code == "1") {
+  if (code != "1") {
+    setTimeout(() => {
+      for (let i of admin_panel_arr) {
+        i.style.display = "none";
+      }
+    }, 50);
+    section_add.style.display = "none";
+  } else {
+    setTimeout(() => {
+      for (let i of admin_panel_arr) {
+        i.style.display = "block";
+      }
+    }, 50);
     section_add.style.display = "block";
   }
 }
@@ -96,34 +120,106 @@ async function readProducts() {
   let data = await fetch(API).then((res) => res.json());
   console.log(data);
   sectionRead.innerHTML = "";
-  data.forEach((item) => {
+  data.forEach((product) => {
     // let productCard = document.createElement("div");
     sectionRead.innerHTML += `
-      <div class="card">
-        <div class="card2">
-          <div class="front2" style="background-image: url(${item.urlImg})"></div>
-          <div class="back2">
-            <div id="card-details2">
-            <p>${item.details}</p>
-            </div>
-          </div>
-          <div class="text">
-            <h2>${item.category}</h2>
-            <span class="card_price">Цена: ${item.price} сом</span>
-            <br />
-            <span class="card_sales">Скидка: ${item.sale} %</span>
-          </div>
-          <div class="userIcon" id="userPanel">
-            <img src="https://cdn-icons-png.flaticon.com/512/2107/2107956.png" alt="" width="20px" />
-            <button class="btnBuy">Выбрать</button>
-          </div>
-          <div class="admin-panel" id="admin">
-            <img src="https://cdn-icons-png.flaticon.com/512/1799/1799391.png" width="20px" class="read_del" />
-            <img src="https://www.freeiconspng.com/thumbs/edit-icon-png/edit-new-icon-22.png" width="20px" />
-          </div>
-        </div>
+    <div class="card">
+    <div class="card2">
+        <div class="front2" style="background-image: url(${product.urlImg});"></div>  
+       <div class="back2">
+        <div id="card_details2"><p>${product.details}</p></div>
+       </div>  
       </div>
+      <div class="text">
+      <h2>${product.category}</h2>
+    <span class="card_price">Цена: ${product.price} сом</span>
+    <br>
+    <span class="card_sales">Cкидка: ${product.sale} %</span>
+        </div>
+        <div class= "userIcon" id="user-panel">
+        <img src="../images/сердце.png" alt="">
+        <button class="btnBuy">Выбрать</button>
+        </div>
+    <div class="admin-panel" id="admin">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/1799/1799391.png"
+        alt=""
+        width="30"
+        id=${product.id}
+        class="read_del"
+        onclick="deleteProduct(${product.id})"
+      />
+      <img src="https://www.freeiconspng.com/thumbs/edit-icon-png/edit-new-icon-22.png" alt="" width="30" 
+      onclick="handleEditBtn(${product.id})"/>
+    </div>
+  </div>
     `;
   });
+  adminReturn();
 }
 readProducts();
+
+// ?  ======= READ END ============
+
+// !============= DELETE START =========
+
+async function deleteProduct(id) {
+  await fetch(`${API}/${id}`, {
+    method: "DELETE",
+  });
+  readProducts();
+}
+
+// ?============== DELETE END =============
+
+// ! ============= EDIT START ==============
+async function editProduct(id, editedObj) {
+  if (
+    !inpEditDetails.value.trim() ||
+    !inpEditQuantity.value.trim() ||
+    !inpEditPrice.value.trim() ||
+    !inpEditCategory.value.trim() ||
+    !inpEditSales.value.trim() ||
+    !inpEditUrl.value.trim()
+  ) {
+    alert("Заполните поля!");
+    return;
+  }
+  await fetch(`${API}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(editedObj),
+  });
+  readProducts();
+}
+
+let editId = "";
+async function handleEditBtn(id) {
+  mainModal.style.display = "block";
+  let data = await fetch(`${API}/${id}`).then((res) => res.json());
+  inpEditDetails.value = data.details;
+  inpEditQuantity.value = data.quantity;
+  inpEditPrice.value = data.price;
+  inpEditCategory.value = data.category;
+  inpEditSales.value = data.sale;
+  inpEditUrl.value = data.urlImg;
+  editId = data.id;
+}
+
+btnEdit.addEventListener("click", () => {
+  let editedObj = {
+    details: inpEditDetails.value,
+    price: inpEditPrice.value,
+    quantity: inpEditQuantity.value,
+    category: inpEditCategory.value,
+    urlImg: inpEditUrl.value,
+    sale: inpEditSales.value,
+  };
+  // console.log(editedObj);
+  editProduct(editId, editedObj);
+  mainModal.style.display = "none";
+});
+
+// ? ============= EDIT END ================
