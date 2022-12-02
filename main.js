@@ -24,7 +24,19 @@ let btnEdit = document.querySelector(".window__edit_btn-save");
 let btnCloseModal = document.querySelector(".window__edit_close");
 let mainModal = document.querySelector(".main-modal");
 
-// console.log(btnCloseModal);
+// инпут и переменная для поиска
+let inpSearch = document.querySelector(".search-txt");
+let searchValue = inpSearch.value;
+
+// paginate
+let prevBtn = document.querySelector("#prev-btn");
+let nextBtn = document.querySelector("#next-btn");
+let currentPage = 1;
+let limit = 4;
+
+// filter
+let form = document.querySelector("form");
+let category = "all";
 
 // !=========== КОДОВОЕ СЛОВО ==========
 let section_add = document.querySelector(".section__add");
@@ -81,6 +93,7 @@ async function createProduct(obj) {
     },
     body: JSON.stringify(obj),
   }).then((res) => res.json());
+  readProducts();
 }
 
 btnAdd.addEventListener("click", () => {
@@ -117,8 +130,11 @@ btnAdd.addEventListener("click", () => {
 
 // ! ================= Read start ==============
 async function readProducts() {
-  let data = await fetch(API).then((res) => res.json());
-  console.log(data);
+  let data = await fetch(
+    `${API}?q=${searchValue}&_page=${currentPage}&_limit=${limit}&${
+      category === "all" ? "" : "category=" + category
+    }`
+  ).then((res) => res.json());
   sectionRead.innerHTML = "";
   data.forEach((product) => {
     // let productCard = document.createElement("div");
@@ -155,6 +171,7 @@ async function readProducts() {
   </div>
     `;
   });
+  pageTotal();
   adminReturn();
 }
 readProducts();
@@ -223,3 +240,38 @@ btnEdit.addEventListener("click", () => {
 });
 
 // ? ============= EDIT END ================
+
+// ! ============== SEARCH START ==========
+inpSearch.addEventListener("input", (e) => {
+  searchValue = e.target.value;
+  readProducts();
+});
+// ? ============== SEARCH END ============
+
+// ! ============== PAGINATION START ===========
+
+let countPage = 1;
+async function pageTotal() {
+  let data = await fetch(`${API}?q=${searchValue}`).then((res) => res.json());
+  console.log(data.length);
+  countPage = Math.ceil(data.length / limit);
+}
+
+prevBtn.addEventListener("click", () => {
+  if (currentPage <= 1) return;
+  currentPage--;
+  readProducts();
+});
+nextBtn.addEventListener("click", () => {
+  if (currentPage >= countPage) return;
+  currentPage++;
+  readProducts();
+});
+// ? ============== PAGINATION END ============
+
+// !=============== FILTER START
+form.addEventListener("change", (e) => {
+  category = e.target.value;
+  readProducts();
+});
+//?================ FILTER END

@@ -330,3 +330,20 @@ a:hover {
 }
 
 /* ? Edit end */
+
+/* ! filter start */
+form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+form input {
+  margin-left: 40px;
+  margin-right: 10px;
+}
+
+form label {
+  font-size: 18px;
+}
+/* ! filter end */

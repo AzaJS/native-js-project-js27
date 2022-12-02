@@ -36,11 +36,7 @@
             </ul>
           </div>
           <div class="search-box1">
-            <input
-              type="text"
-              class="search-txt"
-              placeholder="Введите категорию"
-            />
+            <input type="text" class="search-txt" placeholder="Поиск..." />
             <a href="" class="search-btn">
               <img
                 src="https://images.vexels.com/media/users/3/132068/isolated/preview/f9bb81e576c1a361c61a8c08945b2c48-search-icon.png"
@@ -90,9 +86,33 @@
 
     <!-- ? CREATE END -->
 
+    <!-- ! FILTER START -->
+    <form>
+      <input type="radio" value="Cappucinno" name="coffee" />
+      <label for="cappucinno">Каппучино</label>
+      <br />
+      <input type="radio" value="Americano" name="coffee" />
+      <label for="americano">Американо</label>
+      <br />
+      <input type="radio" value="Latte" name="coffee" />
+      <label for="latte">Латте</label>
+      <br />
+      <input type="radio" value="all" name="coffee" />
+      <label for="all">Все продукты</label>
+      <br />
+    </form>
+    <!-- ? FILTER END -->
+
     <!-- ! READ START -->
     <section id="section__read"></section>
     <!-- ? READ END -->
+
+    <!-- ! PAGINATION START -->
+    <div class="paginate">
+      <button id="prev-btn">Prev</button>
+      <button id="next-btn">Next</button>
+    </div>
+    <!-- ? PAGINATION END -->
 
     <!-- ! EDIT START -->
     <div class="main-modal">

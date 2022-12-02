@@ -4,7 +4,7 @@
       "details": "Latte",
       "price": "300",
       "quantity": "4",
-      "category": "Coffe Latte",
+      "category": "Latte",
       "sale": "10",
       "urlImg": "https://coffee61.ru/wa-data/public/photos/68/03/368/368.970.jpg",
       "id": 1
@@ -13,7 +13,7 @@
       "details": "Cappucino",
       "price": "400",
       "quantity": "1",
-      "category": "coffe Cappucinno",
+      "category": "Cappucinno",
       "sale": "5",
       "urlImg": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Latte_art_3.jpg",
       "id": 2
@@ -22,7 +22,7 @@
       "details": "Americano",
       "price": "200",
       "quantity": "2",
-      "category": "Coffe Americano",
+      "category": "Americano",
       "sale": "5",
       "urlImg": "https://cdn.buttercms.com/AB7ud4YSE6nmOX0iGlgA",
       "id": 3
@@ -31,7 +31,7 @@
       "details": "Espresso",
       "price": "180",
       "quantity": "2",
-      "category": "Coffe Espresso",
+      "category": "Espresso",
       "sale": "5",
       "urlImg": "https://coffeeguycafe.com/wp-content/uploads/2019/01/Espresso-Coffee.jpg",
       "id": 4
